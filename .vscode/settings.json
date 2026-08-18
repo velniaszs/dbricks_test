@@ -1,0 +1,48 @@
+{
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "notebook.formatOnSave.enabled": true,
+    "notebook.codeActionsOnSave": {
+        "notebook.source.fixAll": "explicit",
+        "notebook.source.organizeImports": "explicit"
+    },
+    "python.envFile": "${workspaceRoot}/.env",
+    "databricks.python.envFile": "${workspaceFolder}/.env",
+    "jupyter.interactiveWindow.cellMarker.codeRegex": "^# COMMAND ----------|^# Databricks notebook source|^(#\\s*%%|#\\s*\\<codecell\\>|#\\s*In\\[\\d*?\\]|#\\s*In\\[ \\])",
+    "jupyter.interactiveWindow.cellMarker.default": "# COMMAND ----------",
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.autoImportCompletions": true,
+    "explorer.autoRevealExclude": {
+        "**/.venv": true
+    },
+    "cSpell.words": [
+        "dataframe",
+        "dbutils",
+        "dotenv",
+        "isin",
+        "lakehouse",
+        "metastore",
+        "pyspark",
+        "usecase"
+    ],
+    "github.copilot.chat.codeGeneration.instructions": [
+        {
+            "file": ".github/skills/bootstrap-project/SKILL.md"
+        }
+    ],
+    "chat.agentSkillsLocations": {
+        ".agents/skills": true,
+        ".github/skills": true,
+        ".claude/skills": true,
+        "~/.agents/skills": true,
+        "~/.copilot/skills": true,
+        "~/.claude/skills": true,
+        "~/.vscode/extensions/synapsevscode.synapse-1.25.0/copilot/skills": true
+    }
+}

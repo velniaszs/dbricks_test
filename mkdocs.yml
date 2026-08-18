@@ -1,0 +1,155 @@
+site_name: AAS Doors Lakehouse
+site_description: Lakehouse pipelines for AAS Doors requirement extracts on Databricks.
+site_url: https://velniaszs.github.io/dbricks_test
+site_author: Arunas Baubinas
+
+# Repository
+repo_name: velniaszs/dbricks_test
+repo_url: https://github.com/velniaszs/dbricks_test
+edit_uri: blob/main/docs/
+
+# Configuration
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
+  - coverage:
+      html_report_dir: build/coverage
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_root_toc_entry: true
+            show_object_full_path: false
+            show_category_heading: true
+  - llmstxt:
+      markdown_description: |
+        Lakehouse pipelines for AAS Doors requirement extracts on Databricks.
+        Bronze ingest, SCD2 silver, and gold serving layers built with uv,
+        Databricks Asset Bundles, pytest and MkDocs.
+      sections:
+        Getting Started:
+          - index.md
+          - getting-started/*.md
+        Development Guide:
+          - development/*.md
+        API Reference:
+          - reference/*.md
+      full_output: llms-full.txt
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: velniaszs
+      repo: dbricks_test
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Navigation
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quick-start.md
+      - Configuration: getting-started/configuration.md
+      - Repository Setup: getting-started/repository-setup.md
+  - Development:
+      - Testing: development/testing.md
+      - Code Quality: development/code-quality.md
+      - CI/CD Pipeline: development/ci-cd.md
+      - Documentation: development/documentation.md
+  - Reference:
+      - API Reference: reference/index.md
+  - Coverage: coverage.md
+
+# Extra
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/velniaszs/dbricks_test
+
+# Site directory
+site_dir: site
+docs_dir: docs
+
+# Watch additional directories
+watch:
+  - src/aas_doors_lakehouse

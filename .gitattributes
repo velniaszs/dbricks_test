@@ -1,0 +1,9 @@
+# Normalise every text file to LF in the repository and in the working tree.
+# The dev container is Linux: a shell script checked out with CRLF fails with
+# "/bin/bash^M: bad interpreter".
+* text=auto eol=lf
+
+*.sh text eol=lf
+
+*.zip binary
+*.parquet binary

@@ -1,0 +1,20 @@
+{
+    "recommendations": [
+        "databricks.databricks",
+        "databricks.sqltools-databricks-driver",
+        "charliermarsh.ruff",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "yzhang.markdown-all-in-one",
+        "vscode-icons-team.vscode-icons",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode-remote.remote-containers"
+    ]
+}

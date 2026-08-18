@@ -1,0 +1,5 @@
+# Customer extracts (~190 MB). Never needed by the image build.
+input/
+
+# Local credentials. Mounted at runtime, never baked into an image layer.
+.secrets/

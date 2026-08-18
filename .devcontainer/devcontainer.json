@@ -1,0 +1,74 @@
+{
+    "name": "AAS Doors Lakehouse",
+    "build": {
+        "dockerfile": "dockerfile",
+        "context": "..",
+        "args": {
+            "HTTP_PROXY": "${localEnv:HTTP_PROXY}",
+            "HTTPS_PROXY": "${localEnv:HTTPS_PROXY}",
+            "NO_PROXY": "${localEnv:NO_PROXY}"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "charliermarsh.ruff",
+                "databricks.databricks",
+                "ms-toolsai.jupyter",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "tamasfe.even-better-toml",
+                "eamodio.gitlens",
+                "editorconfig.editorconfig",
+                "github.copilot",
+                "github.copilot-chat",
+                "yzhang.markdown-all-in-one",
+                "vscode-icons-team.vscode-icons"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+                "python.terminal.activateEnvironment": true,
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "explicit"
+                    }
+                },
+                "ruff.organizeImports": true,
+                "files.associations": {
+                    "*.py": "python"
+                },
+                "terminal.integrated.defaultProfile.linux": "zsh"
+            }
+        }
+    },
+    "runArgs": [
+        "--add-host=host.docker.internal:host-gateway"
+    ],
+    // Proxy vars are inherited from the host. On a corporate network set
+    // HTTP_PROXY/HTTPS_PROXY/NO_PROXY before launching VS Code; off it they
+    // resolve to empty and the container talks to the internet directly.
+    "containerEnv": {
+        "DATABRICKS_CONFIG_FILE": "/home/vscode/.databrickscfg",
+        "HTTP_PROXY": "${localEnv:HTTP_PROXY}",
+        "HTTPS_PROXY": "${localEnv:HTTPS_PROXY}",
+        "NO_PROXY": "${localEnv:NO_PROXY}",
+        "http_proxy": "${localEnv:HTTP_PROXY}",
+        "https_proxy": "${localEnv:HTTPS_PROXY}",
+        "no_proxy": "${localEnv:NO_PROXY}",
+        "UV_SYSTEM_CERTS": "true",
+        "UV_LINK_MODE": "copy",
+        "UV_PYTHON": "/usr/local/bin/python",
+        // Private package index and its credentials. Both resolve to nothing
+        // when unset, so uv falls back to PyPI on hosts that can reach it.
+        "UV_DEFAULT_INDEX": "${localEnv:UV_DEFAULT_INDEX}",
+        "NETRC": "/workspace/.secrets/ado.netrc"
+    },
+    "postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
+    "remoteUser": "vscode",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+}

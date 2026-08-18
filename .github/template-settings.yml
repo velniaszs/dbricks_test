@@ -1,0 +1,77 @@
+# GitHub Template Configuration
+# This file configures the Lakehouse Project Template as a GitHub template repository
+
+name: "Lakehouse Project Template"
+description: "🔷 Production-ready Python template for Databricks Lakehouse development"
+
+# Template metadata
+template:
+  name: "Lakehouse Project Template"
+  description: "A production-ready Python project template for Databricks Lakehouse development. Pre-configured with uv package manager, Databricks Connect, MkDocs documentation, and GitHub Actions CI/CD."
+
+# Repository topics for discoverability
+topics:
+  - python
+  - databricks
+  - lakehouse
+  - uv
+  - template
+  - project-template
+  - data-engineering
+  - azure-databricks
+
+# Branch configuration
+branches:
+  # Only include the main branch in template creation
+  include_all_branches: false
+  default_branch: main
+
+# Template features
+features:
+  - "Lightning-fast uv package management"
+  - "Databricks Connect and SDK pre-configured"
+  - "Python 3.12 (matching Databricks Runtime 18.0+)"
+  - "Ruff linting and formatting"
+  - "MkDocs Material documentation with API reference"
+  - "GitHub Actions CI/CD pipeline"
+  - "Dev container for standardized development"
+  - "Copilot bootstrap skill for easy customization"
+
+# Post-template customization options
+customization:
+  methods:
+    - name: "Copilot Bootstrap Skill"
+      description: "Use GitHub Copilot with built-in bootstrap skill for automated setup"
+      time: "~2 minutes"
+      complexity: "Low"
+      requirements: "VS Code with GitHub Copilot"
+      trigger: "Ask Copilot: 'Bootstrap this project for my-project-name'"
+
+    - name: "Manual Setup"
+      description: "Follow the bootstrap skill checklist manually"
+      time: "~10 minutes"
+      complexity: "Medium"
+      requirements: "Basic Python knowledge"
+      reference: ".github/skills/bootstrap-project/SKILL.md"
+
+# Template usage instructions
+usage:
+  quick_start: |
+    1. Click "Use this template" to create your repository
+    2. Clone your new repository locally
+    3. Open in VS Code with GitHub Copilot
+    4. Ask Copilot: "Bootstrap this project for my-project-name"
+    5. Run: uv sync --dev && uv run pytest
+    6. Start coding!
+
+# Support and documentation
+support:
+  documentation: "https://bosch-engineering.github.io/lakehouse.project-template"
+  issues: "https://github.com/bosch-engineering/lakehouse.project-template/issues"
+  discussions: "https://github.com/bosch-engineering/lakehouse.project-template/discussions"
+
+# Template maintenance
+maintenance:
+  last_updated: "2026-02-03"
+  version: "0.1.0"
+  status: "stable"

@@ -1,0 +1,29 @@
+# Databricks Asset Bundles configuration
+# See https://docs.databricks.com/dev-tools/bundles/index.html
+
+bundle:
+  name: aas-doors-lakehouse
+
+include:
+  - resources/*.yml
+
+targets:
+  local:
+    mode: development
+    default: true
+    workspace:
+      host: https://your-workspace.azuredatabricks.net
+    presets:
+      tags:
+        team: "your-team"
+        instance: "local"
+
+  dev:
+    mode: development
+    default: false
+    workspace:
+      host: https://your-workspace.azuredatabricks.net
+    presets:
+      tags:
+        team: "your-team"
+        instance: "dev"

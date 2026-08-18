@@ -1,0 +1,111 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aas-doors-lakehouse"
+version = "1.0.0"
+description = "Lakehouse pipelines for AAS Doors requirement extracts on Databricks."
+readme = "README.md"
+authors = [
+    { name = "Arunas Baubinas", email = "external.Arunas.Baubinas@de.bosch.com" }
+]
+maintainers = [
+    { name = "Arunas Baubinas", email = "external.Arunas.Baubinas@de.bosch.com" }
+]
+keywords = ["python", "lakehouse", "databricks", "scd2", "data-engineering"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "databricks-connect>=18.0",
+    "databricks-sdk[notebook]>=0.43",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.1",
+]
+
+[project.scripts]
+aas-doors-smoke = "aas_doors_lakehouse.smoke:main"
+
+[project.urls]
+Homepage = "https://github.com/velniaszs/dbricks_test"
+Repository = "https://github.com/velniaszs/dbricks_test"
+Documentation = "https://velniaszs.github.io/dbricks_test"
+Issues = "https://github.com/velniaszs/dbricks_test/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aas_doors_lakehouse"]
+
+# Ruff configuration
+[tool.ruff]
+line-length = 120
+indent-width = 4
+builtins = ["display", "displayHTML", "dbutils", "table", "sql", "udf", "getArgument", "sc", "sqlContext", "spark"]
+# Frozen reference implementations: Databricks notebook-source format, not linted or reformatted.
+extend-exclude = ["databricks_v1", "databricks_V2"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "PLR"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004"]  # Allow magic values in tests
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# Pytest configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = "src"
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["src"]
+branch = true
+data_file = "build/.coverage"
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 80
+
+[tool.coverage.html]
+directory = "build/coverage"
+
+[tool.coverage.xml]
+output = "build/coverage.xml"
+
+[dependency-groups]
+dev = [
+    # Linting and formatting
+    "ruff>=0.1.0",
+    "pre-commit>=3.0.0",
+
+    # Testing
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+
+    # Documentation
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.15",
+    "mkdocstrings[python]>=0.29.1",
+    "pymdown-extensions>=10.16",
+    "mkdocs-llmstxt>=0.3.0",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-coverage>=1.1.0",
+]

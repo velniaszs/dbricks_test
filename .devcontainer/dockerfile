@@ -1,0 +1,50 @@
+# AAS Doors Lakehouse Development Container
+# Python 3.12 with uv and Databricks CLI
+
+FROM mcr.microsoft.com/devcontainers/python:3.12
+
+# Avoid prompts during package installation
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Proxy configuration (passed from devcontainer.json build args)
+ARG HTTP_PROXY
+ARG HTTPS_PROXY
+ARG NO_PROXY
+ENV HTTP_PROXY=${HTTP_PROXY} \
+    HTTPS_PROXY=${HTTPS_PROXY} \
+    NO_PROXY=${NO_PROXY} \
+    http_proxy=${HTTP_PROXY} \
+    https_proxy=${HTTPS_PROXY} \
+    no_proxy=${NO_PROXY} \
+    UV_SYSTEM_CERTS=true
+
+# Install uv (fast Python package manager)
+# https://docs.astral.sh/uv/guides/integration/docker/
+# Using multi-stage COPY is more reliable than curl|sh (avoids silent
+# failures when a proxy intercepts or blocks the download).
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
+
+# Add user-local bin to PATH
+ENV PATH="/home/vscode/.local/bin:${PATH}"
+
+# Install Databricks CLI
+# https://docs.databricks.com/en/dev-tools/cli/install.html
+RUN curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+# Install Azure CLI inline to avoid devcontainer feature registry resolution,
+# which fails behind authenticated proxies (HTTP 407). Proxy env vars set above
+# are respected by both curl and apt during this step.
+# https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
+# Set default shell to zsh
+SHELL ["/bin/zsh", "-c"]
+
+# Switch to non-root user
+USER vscode
+
+# Configure shell
+RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+
+# Set working directory
+WORKDIR /workspace
