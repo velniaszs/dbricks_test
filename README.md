@@ -57,38 +57,51 @@ uv run mkdocs serve
 
 ## Databricks Setup
 
-### 1. Configure Workspace
+### 1. Workspace and Targets
 
-Edit `databricks.yml` with your workspace URL:
+The workspace URL is already set in `databricks.yml`. Two deployment targets are defined:
 
-```yaml
-targets:
-  dev:
-    workspace:
-      host: https://your-workspace.azuredatabricks.net
-```
+| Target | Default | Purpose |
+|--------|---------|---------|
+| `local` | yes | Personal sandbox. Used when `-t` is omitted. |
+| `dev` | no | Shared development environment. Requires `-t dev`. |
+
+Both run in `mode: development`, so deployed resources are prefixed `[dev <username>]`, schedules are paused, and each target deploys to its own path under `/Workspace/Users/<you>/.bundle/aas-doors-lakehouse/<target>/`.
+
+Replace the `team` tag placeholder with your team name before deploying.
 
 ### 2. Authentication
 
-```bash
-# Install Databricks CLI
-brew install databricks/tap/databricks
-
-# Configure authentication
-databricks auth login --host https://your-workspace.azuredatabricks.net
-```
-
-Or use `.env` file:
+The Databricks CLI is pre-installed in the dev container. Outside it, see the [installation docs](https://docs.databricks.com/dev-tools/cli/install.html).
 
 ```bash
-DATABRICKS_HOST=https://your-workspace.azuredatabricks.net
-DATABRICKS_TOKEN=your-personal-access-token
+databricks auth login --host https://adb-7405617899344789.9.azuredatabricks.net
 ```
+
+The CLI prompts for a profile name; this project uses `aas-doors`. It opens a browser for OAuth and writes the profile to `~/.databrickscfg`. No secrets are stored in the repo.
+
+```bash
+databricks auth profiles          # list configured profiles
+databricks -p aas-doors current-user me
+```
+
+Commands pick up the profile automatically when its `host` matches the target in `databricks.yml`; otherwise pass `-p aas-doors`.
 
 ### 3. Verify Connection
 
 ```bash
-uv run python -c "from databricks.connect import DatabricksSession; print(DatabricksSession.builder.getOrCreate())"
+databricks bundle validate     # resolve bundle config against the workspace
+databricks current-user me     # confirm the profile authenticates
+uv run python -c "from databricks.connect import DatabricksSession; print(DatabricksSession.builder.getOrCreate().sql('select current_user()').collect())"
+```
+
+The last command needs two things the dev container supplies: `DATABRICKS_CONFIG_PROFILE=aas-doors` in `containerEnv`, and `serverless_compute_id = auto` in the profile. Without the former the SDK falls back to an empty `[DEFAULT]` section; without the latter Databricks Connect has no compute to attach to and you must call `.serverless(True)` explicitly.
+
+### 4. Deploy
+
+```bash
+databricks bundle deploy            # -> local target
+databricks bundle deploy -t dev     # -> dev target
 ```
 
 ## Development Commands
@@ -112,10 +125,19 @@ For a consistent, pre-configured development environment:
 
 The dev container includes:
 
-- Ubuntu 22.04 with Python 3.12
+- Debian with Python 3.12
 - `uv`, Databricks CLI, Azure CLI pre-installed
 - All VS Code extensions configured
 - Persistent authentication via mounted `~/.databrickscfg` and `~/.azure`
+
+Those two mounts bind from your **host** home directory, so credentials survive a rebuild. Create them on the host before first launch, otherwise Docker substitutes an empty directory and every CLI call fails:
+
+```bash
+touch ~/.databrickscfg
+mkdir -p ~/.azure
+```
+
+The mount uses `${localEnv:HOME}`, which is empty on Windows hosts — change it to `${localEnv:USERPROFILE}` in `.devcontainer/devcontainer.json` if you develop on Windows.
 
 ## VS Code Integration
 

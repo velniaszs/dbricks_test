@@ -53,6 +53,9 @@
     // resolve to empty and the container talks to the internet directly.
     "containerEnv": {
         "DATABRICKS_CONFIG_FILE": "/home/vscode/.databrickscfg",
+        // Set here rather than in .env so terminals, pytest and the debugger all
+        // resolve it; the SDK ignores the CLI's own default_profile setting.
+        "DATABRICKS_CONFIG_PROFILE": "aas-doors",
         "HTTP_PROXY": "${localEnv:HTTP_PROXY}",
         "HTTPS_PROXY": "${localEnv:HTTPS_PROXY}",
         "NO_PROXY": "${localEnv:NO_PROXY}",
@@ -70,5 +73,13 @@
     "postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
     "remoteUser": "vscode",
     "workspaceFolder": "/workspace",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    // USERPROFILE and HOME are concatenated because only one is set per host OS:
+    // Windows sets the former, macOS/Linux the latter, so the unset one is empty.
+    // Both sources must exist on the host before the container starts, or Docker
+    // creates an empty directory in their place and the CLI breaks.
+    "mounts": [
+        "source=${localEnv:USERPROFILE}${localEnv:HOME}/.databrickscfg,target=/home/vscode/.databrickscfg,type=bind",
+        "source=${localEnv:USERPROFILE}${localEnv:HOME}/.azure,target=/home/vscode/.azure,type=bind"
+    ]
 }

@@ -12,7 +12,7 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://your-workspace.azuredatabricks.net
+      host: https://adb-7405617899344789.9.azuredatabricks.net
     presets:
       tags:
         team: "your-team"
@@ -22,7 +22,7 @@ targets:
     mode: development
     default: false
     workspace:
-      host: https://your-workspace.azuredatabricks.net
+      host: https://adb-7405617899344789.9.azuredatabricks.net
     presets:
       tags:
         team: "your-team"
