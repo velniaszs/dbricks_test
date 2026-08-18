@@ -2,6 +2,10 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 
+# Frozen trees, mirroring extend-exclude in pyproject.toml. The generic hooks
+# below have no language filter, so without this they rewrite the v1 baseline.
+exclude: '^(databricks_v1|databricks_V2)/'
+
 repos:
   # Ruff linter and formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
