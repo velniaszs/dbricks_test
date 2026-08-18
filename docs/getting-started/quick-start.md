@@ -111,7 +111,7 @@ With Databricks Connect you can connect to Databricks from VS Code. You can log 
 | Quality Assurance | Pre-production validation |
 | Production | Live workloads |
 
-The setup is preconfigured to let you first work on the **Local** instance. 
+The setup is preconfigured to let you first work on the **Local** instance.
 
 ```python
 from databricks.connect import DatabricksSession

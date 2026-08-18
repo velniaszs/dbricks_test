@@ -15,7 +15,7 @@ targets:
       host: https://adb-7405617899344789.9.azuredatabricks.net
     presets:
       tags:
-        team: "your-team"
+        team: "team"
         instance: "local"
 
   dev:
@@ -25,5 +25,5 @@ targets:
       host: https://adb-7405617899344789.9.azuredatabricks.net
     presets:
       tags:
-        team: "your-team"
+        team: "team"
         instance: "dev"

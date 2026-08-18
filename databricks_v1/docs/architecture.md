@@ -1,6 +1,6 @@
 # Databricks Lakehouse Architecture — Bosch, AAS Doors
 
-**Customer:** Bosch  
+**Customer:** Bosch
 **Source system:** AAS Doors — CSV extracts (currently feeding Splunk)
 
 **1300 distinct columns** across all projects: roughly 20–30 **generic** columns shared by every

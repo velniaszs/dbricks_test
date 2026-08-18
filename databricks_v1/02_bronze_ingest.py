@@ -309,4 +309,3 @@ display(spark.sql(f"""
     GROUP BY ALL
     ORDER BY project_id, seq_from
 """))
-

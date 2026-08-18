@@ -68,6 +68,9 @@
         // Private package index and its credentials. Both resolve to nothing
         // when unset, so uv falls back to PyPI on hosts that can reach it.
         "UV_DEFAULT_INDEX": "${localEnv:UV_DEFAULT_INDEX}",
+        // pip ignores UV_DEFAULT_INDEX, so pre-commit's hook environments need
+        // the same feed named separately or they fall back to blocked PyPI.
+        "PIP_INDEX_URL": "${localEnv:UV_DEFAULT_INDEX}",
         "NETRC": "/workspace/.secrets/ado.netrc"
     },
     "postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
