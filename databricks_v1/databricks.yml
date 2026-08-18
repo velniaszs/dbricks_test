@@ -1,0 +1,77 @@
+# Databricks Asset Bundle for the Bosch / AAS Doors PoC.
+#
+# Tasks declare no cluster at all -- that is what makes them run on serverless compute.
+# Adding `job_cluster_key` or `existing_cluster_id` would switch them to classic compute.
+#
+#   databricks bundle validate
+#   databricks bundle deploy  -t dev
+#   databricks bundle run     poc_pipeline -t dev
+
+bundle:
+  name: bosch_aas_doors_poc
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      host: https://<your-workspace>.azuredatabricks.net
+
+resources:
+  jobs:
+    poc_pipeline:
+      name: "[PoC] AAS Doors bronze -> silver -> gold"
+      max_concurrent_runs: 1
+
+      # Serverless notebook tasks need their Python deps declared here rather than
+      # installed on a cluster.
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "2"
+
+      tasks:
+        - task_key: setup
+          notebook_task:
+            notebook_path: ./00_setup.py
+          environment_key: default
+
+        - task_key: generate_dummy_data
+          depends_on: [{ task_key: setup }]
+          notebook_task:
+            notebook_path: ./01_generate_dummy_data.py
+          environment_key: default
+
+        - task_key: bronze_ingest
+          depends_on: [{ task_key: generate_dummy_data }]
+          notebook_task:
+            notebook_path: ./02_bronze_ingest.py
+          environment_key: default
+
+        - task_key: seed_metadata
+          depends_on: [{ task_key: setup }]
+          notebook_task:
+            notebook_path: ./03_seed_metadata.py
+          environment_key: default
+
+        - task_key: build_silver
+          depends_on:
+            - { task_key: bronze_ingest }
+            - { task_key: seed_metadata }
+          notebook_task:
+            notebook_path: ./04_build_silver.py
+            base_parameters:
+              mapping_ver: "2"
+          environment_key: default
+
+        - task_key: gold_views
+          depends_on: [{ task_key: build_silver }]
+          notebook_task:
+            notebook_path: ./05_gold_views.py
+          environment_key: default
+
+        - task_key: validate_and_rebuild
+          depends_on: [{ task_key: gold_views }]
+          notebook_task:
+            notebook_path: ./06_validate_and_rebuild.py
+          environment_key: default

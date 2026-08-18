@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+*.egg-info/
+
+# Databricks asset bundle state (per-user, per-target; never share)
+.databricks/
+build/
+dist/
+
+# Local editor/tooling config
+.vscode/
+
+# Export artifacts (workspace exports are regenerated, not source)
+*.zip
+
+# Local data that must never leave the machine
+*.csv
+*.parquet
+!databricks_V2/mappings/**/*.csv
