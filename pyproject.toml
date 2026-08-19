@@ -52,9 +52,14 @@ extend-exclude = ["databricks_v1", "databricks_V2"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "PLR"]
+# `from pyspark.sql import functions as F` is the universal Spark convention, including in V1.
+ignore = ["N812"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["PLR2004"]  # Allow magic values in tests
+"tests/*" = [
+    "PLR2004",  # Magic values are the point of a fixture test
+    "PLR0913",  # Row builders take one argument per column
+]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -71,6 +76,9 @@ addopts = [
     "--strict-markers",
     "--strict-config",
     "--verbose",
+]
+markers = [
+    "workspace: requires a live Databricks workspace; skipped when no session can be established",
 ]
 
 # Coverage configuration
