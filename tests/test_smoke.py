@@ -1,7 +1,7 @@
 """Tests for the smoke job. No cluster required: Spark is faked."""
 
-import aas_doors_lakehouse
-from aas_doors_lakehouse import smoke
+import bedi_lakehouse
+from bedi_lakehouse import smoke
 
 
 class _FakeDataFrame:
@@ -32,7 +32,7 @@ class _FakeSession:
 
 
 def test_build_banner_includes_version() -> None:
-    assert aas_doors_lakehouse.__version__ in smoke.build_banner()
+    assert bedi_lakehouse.__version__ in smoke.build_banner()
 
 
 def test_run_returns_row_count() -> None:

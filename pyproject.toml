@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "aas-doors-lakehouse"
+name = "bedi-lakehouse"
 version = "1.0.0"
-description = "Lakehouse pipelines for AAS Doors requirement extracts on Databricks."
+description = "Multi-source lakehouse framework on Databricks: bronze ingest, SCD2 silver, gold serving."
 readme = "README.md"
 authors = [
     { name = "Arunas Baubinas", email = "external.Arunas.Baubinas@de.bosch.com" }
@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.scripts]
-aas-doors-smoke = "aas_doors_lakehouse.smoke:main"
+bedi-smoke = "bedi_lakehouse.smoke:main"
 
 [project.urls]
 Homepage = "https://github.com/velniaszs/dbricks_test"
@@ -40,7 +40,7 @@ Documentation = "https://velniaszs.github.io/dbricks_test"
 Issues = "https://github.com/velniaszs/dbricks_test/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/aas_doors_lakehouse"]
+packages = ["src/bedi_lakehouse"]
 
 # Ruff configuration
 [tool.ruff]

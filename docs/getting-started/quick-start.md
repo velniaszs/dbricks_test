@@ -72,7 +72,7 @@ targets:
 ## Project Structure
 
 ```
-├── src/aas_doors_lakehouse/          # Your code goes here
+├── src/bedi_lakehouse/          # Your code goes here
 ├── tests/                            # Test files
 ├── docs/                             # Documentation
 ├── resources/                        # Databricks workflow resources
@@ -85,7 +85,7 @@ targets:
 
 ### Adding Code
 
-1. Add your modules to `src/aas_doors_lakehouse/`
+1. Add your modules to `src/bedi_lakehouse/`
 2. Write tests in `tests/`
 3. Run tests: `uv run pytest`
 4. Check linting: `uv run ruff check`

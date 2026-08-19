@@ -1,1 +1,1 @@
-"""Scripts package for AAS Doors Lakehouse."""
+"""Scripts package for BEDI Lakehouse."""

@@ -1,10 +1,10 @@
-# AAS Doors Lakehouse
+# BEDI Lakehouse
 
 [![CI/CD](https://github.com/velniaszs/dbricks_test/actions/workflows/ci.yml/badge.svg)](https://github.com/velniaszs/dbricks_test/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![Databricks Runtime](https://img.shields.io/badge/DBR-18.0+-red.svg)](https://docs.databricks.com/release-notes/runtime/)
 
-Lakehouse pipelines for AAS Doors requirement extracts on Databricks: bronze ingest, SCD2 silver, and gold serving layers. Built from the Bosch lakehouse project template.
+Multi-source lakehouse framework on Databricks: bronze ingest, SCD2 silver, and gold serving layers. Built from the Bosch lakehouse project template. AAS Doors is the first source system onboarded.
 
 ## Features
 
@@ -41,13 +41,15 @@ uv run mkdocs serve
 ## Project Structure
 
 ```
-├── src/aas_doors_lakehouse/          # Source code (V2, importable modules)
+├── src/bedi_lakehouse/               # Source code (V2, importable modules)
 ├── tests/                            # Test files
 ├── docs/                             # Documentation (MkDocs)
+├── design/                           # Architecture and design records (not published)
+├── config/                           # Source, mapping and environment declarations
 ├── resources/                        # Databricks Asset Bundle job definitions
 ├── typings/                          # Type stubs for Databricks globals
 ├── databricks_v1/                    # FROZEN V1 PoC — reconciliation baseline, do not edit
-├── databricks_V2/                    # V2 architecture docs + AUTO CDC spike
+├── databricks_V2/                    # Notebook-era V2 design record + AUTO CDC spike
 ├── input/                            # Local source extracts (git-ignored, never commit)
 ├── .vscode/                          # VS Code settings & extensions
 ├── pyproject.toml                    # Project configuration
@@ -66,9 +68,7 @@ The workspace URL is already set in `databricks.yml`. Two deployment targets are
 | `local` | yes | Personal sandbox. Used when `-t` is omitted. |
 | `dev` | no | Shared development environment. Requires `-t dev`. |
 
-Both run in `mode: development`, so deployed resources are prefixed `[dev <username>]`, schedules are paused, and each target deploys to its own path under `/Workspace/Users/<you>/.bundle/aas-doors-lakehouse/<target>/`.
-
-Replace the `team` tag placeholder with your team name before deploying.
+Both run in `mode: development`, so deployed resources are prefixed `[dev <username>]`, schedules are paused, and each target deploys to its own path under `/Workspace/Users/<you>/.bundle/bedi-lakehouse/<target>/`.
 
 ### 2. Authentication
 

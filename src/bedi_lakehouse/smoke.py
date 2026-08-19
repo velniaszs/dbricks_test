@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 
 from databricks.connect import DatabricksSession
 
-from aas_doors_lakehouse import __version__
+from bedi_lakehouse import __version__
 
 if TYPE_CHECKING:
     from pyspark.sql import SparkSession
@@ -20,7 +20,7 @@ SAMPLE_SCHEMA = "id INT, name STRING"
 
 def build_banner() -> str:
     """Return a one-line identity banner for the running wheel."""
-    return f"aas-doors-lakehouse {__version__}"
+    return f"bedi-lakehouse {__version__}"
 
 
 def run(spark: "SparkSession") -> int:

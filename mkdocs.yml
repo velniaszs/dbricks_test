@@ -1,5 +1,5 @@
-site_name: AAS Doors Lakehouse
-site_description: Lakehouse pipelines for AAS Doors requirement extracts on Databricks.
+site_name: BEDI Lakehouse
+site_description: "Multi-source lakehouse framework on Databricks: bronze ingest, SCD2 silver, gold serving."
 site_url: https://velniaszs.github.io/dbricks_test
 site_author: Arunas Baubinas
 
@@ -69,7 +69,7 @@ plugins:
             show_category_heading: true
   - llmstxt:
       markdown_description: |
-        Lakehouse pipelines for AAS Doors requirement extracts on Databricks.
+        Multi-source lakehouse framework on Databricks.
         Bronze ingest, SCD2 silver, and gold serving layers built with uv,
         Databricks Asset Bundles, pytest and MkDocs.
       sections:
@@ -152,4 +152,4 @@ docs_dir: docs
 
 # Watch additional directories
 watch:
-  - src/aas_doors_lakehouse
+  - src/bedi_lakehouse

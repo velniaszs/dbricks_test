@@ -1,4 +1,4 @@
-# AAS Doors Lakehouse Development Container
+# BEDI Lakehouse Development Container
 # Python 3.12 with uv and Databricks CLI
 
 FROM mcr.microsoft.com/devcontainers/python:3.12

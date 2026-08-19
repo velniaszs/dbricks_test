@@ -1,4 +1,4 @@
-name: AAS Doors Lakehouse CI/CD
+name: BEDI Lakehouse CI/CD
 
 on:
   push:

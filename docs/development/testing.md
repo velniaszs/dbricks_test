@@ -1,6 +1,6 @@
 # Testing Guide
 
-Testing with pytest in the AAS Doors Lakehouse project.
+Testing with pytest in the BEDI Lakehouse project.
 
 ## Overview
 

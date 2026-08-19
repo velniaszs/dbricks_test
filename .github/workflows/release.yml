@@ -57,7 +57,7 @@ jobs:
           CURRENT_TAG=${GITHUB_REF#refs/tags/}
 
           if [ -z "$PREV_TAG" ] || [ "$PREV_TAG" = "$CURRENT_TAG" ]; then
-            echo "body=Initial release of AAS Doors Lakehouse." >> $GITHUB_OUTPUT
+            echo "body=Initial release of BEDI Lakehouse." >> $GITHUB_OUTPUT
           else
             LOG=$(git --no-pager log "$PREV_TAG..$CURRENT_TAG" --pretty=format:"- %s (%h)" --no-merges)
             # Write multi-line output

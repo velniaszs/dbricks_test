@@ -1,6 +1,6 @@
 # Installation
 
-Get started with the AAS Doors Lakehouse project.
+Get started with the BEDI Lakehouse project.
 
 ## Getting the Repository
 

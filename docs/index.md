@@ -1,6 +1,6 @@
-# AAS Doors Lakehouse
+# BEDI Lakehouse
 
-Lakehouse pipelines for **AAS Doors** requirement extracts on Databricks.
+Multi-source lakehouse framework on Databricks. **AAS Doors** is the first source system onboarded.
 
 ## Features
 
@@ -21,7 +21,7 @@ See [Installation](getting-started/installation.md) and [Quick Start](getting-st
 
 ## Repository Conventions
 
-- New code is **plain Python modules** under `src/aas_doors_lakehouse/`, not Databricks notebooks.
+- New code is **plain Python modules** under `src/bedi_lakehouse/`, not Databricks notebooks.
 - `databricks_v1/` is a **frozen** reference implementation and reconciliation baseline; it is excluded from linting.
 - `input/` holds local source extracts and is git-ignored. Never commit it.
 

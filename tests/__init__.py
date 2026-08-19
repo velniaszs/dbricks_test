@@ -1,1 +1,1 @@
-"""Test package for aas_doors_lakehouse."""
+"""Test package for bedi_lakehouse."""

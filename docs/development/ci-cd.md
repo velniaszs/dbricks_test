@@ -1,6 +1,6 @@
 # CI/CD Pipeline
 
-The AAS Doors Lakehouse project includes a comprehensive CI/CD pipeline powered by GitHub Actions that ensures code quality and automates deployment.
+The BEDI Lakehouse project includes a comprehensive CI/CD pipeline powered by GitHub Actions that ensures code quality and automates deployment.
 
 ## Pipeline Overview
 

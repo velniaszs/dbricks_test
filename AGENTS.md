@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Lakehouse pipelines for AAS Doors requirement extracts on Databricks. Python 3.12 project using uv package manager.
+Multi-source lakehouse framework on Databricks. AAS Doors is the first source system onboarded. Python 3.12 project using uv package manager.
 
 Bootstrapped from the Bosch lakehouse project template on 2026-08-18. **The bootstrap is done — do not re-run it.** The skill at `.github/skills/bootstrap-project/SKILL.md` is retained for reference only.
 
@@ -25,12 +25,14 @@ Bootstrapped from the Bosch lakehouse project template on 2026-08-18. **The boot
 
 ## Project Structure
 
-- `src/aas_doors_lakehouse/` - Main package source code (V2)
+- `src/bedi_lakehouse/` - Main package source code (V2)
 - `tests/` - Test files
-- `docs/` - Documentation (MkDocs)
+- `docs/` - Documentation (MkDocs, **published publicly** to GitHub Pages)
+- `design/` - Architecture and design records, deliberately **not** published
+- `config/` - Source, mapping and environment declarations loaded into `meta`
 - `resources/` - Databricks Asset Bundle job definitions
 - `databricks_v1/` - **FROZEN** V1 PoC, reconciliation baseline. Do not edit.
-- `databricks_V2/` - V2 architecture docs and the AUTO CDC spike
+- `databricks_V2/` - Notebook-era V2 design record and the AUTO CDC spike. Superseded by `design/`.
 - `input/` - Local source extracts, **git-ignored, contains customer data**
 - `build/coverage/` - Coverage reports output
 - `site/` - Generated documentation output

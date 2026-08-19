@@ -1,6 +1,6 @@
 # Configuration
 
-Configuration files reference for the AAS Doors Lakehouse project.
+Configuration files reference for the BEDI Lakehouse project.
 
 ## Overview
 
@@ -20,9 +20,9 @@ Main project configuration following Python packaging standards.
 
 ```toml
 [project]
-name = "aas-doors-lakehouse"
+name = "bedi-lakehouse"
 version = "1.0.0"
-description = "Lakehouse pipelines for AAS Doors requirement extracts on Databricks."
+description = "Multi-source lakehouse framework on Databricks: bronze ingest, SCD2 silver, gold serving."
 requires-python = ">=3.12,<3.13"
 ```
 
@@ -96,7 +96,7 @@ Databricks Asset Bundles configuration for deploying workflows.
 
 ```yaml
 bundle:
-  name: aas-doors-lakehouse
+  name: bedi-lakehouse
 
 include:
   - resources/*.yml

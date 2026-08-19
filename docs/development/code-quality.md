@@ -60,7 +60,7 @@ uv run ruff check
 uv run ruff check --fix
 
 # Check specific files
-uv run ruff check src/aas_doors_lakehouse/core.py
+uv run ruff check src/bedi_lakehouse/core.py
 
 # Show all issues (including fixed)
 uv run ruff check --show-fixes
@@ -76,7 +76,7 @@ uv run ruff format
 uv run ruff format --check
 
 # Format specific files
-uv run ruff format src/aas_doors_lakehouse/core.py
+uv run ruff format src/bedi_lakehouse/core.py
 ```
 
 ### Combined Workflow
@@ -211,8 +211,8 @@ import requests
 from click import command, option
 
 # Local imports
-from aas_doors_lakehouse.core import hello_world
-from aas_doors_lakehouse.utils import helper_function
+from bedi_lakehouse.core import hello_world
+from bedi_lakehouse.utils import helper_function
 ```
 
 ### Line Length and Formatting

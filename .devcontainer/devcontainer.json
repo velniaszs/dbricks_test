@@ -1,5 +1,5 @@
 {
-    "name": "AAS Doors Lakehouse",
+    "name": "BEDI Lakehouse",
     "build": {
         "dockerfile": "dockerfile",
         "context": "..",

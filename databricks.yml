@@ -2,7 +2,7 @@
 # See https://docs.databricks.com/dev-tools/bundles/index.html
 
 bundle:
-  name: aas-doors-lakehouse
+  name: bedi-lakehouse
 
 include:
   - resources/*.yml

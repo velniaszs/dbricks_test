@@ -101,7 +101,7 @@ Use [MkDocs Material reference](https://squidfunnel.github.io/mkdocs-material-re
 
 The template uses mkdocstrings to generate API documentation from docstrings:
 
-```python title="src/aas_doors_lakehouse/core.py"
+```python title="src/bedi_lakehouse/core.py"
 def add_numbers(a: int, b: int) -> int:
     """
     Add two numbers together.
@@ -135,7 +135,7 @@ Auto-generated API documentation for the Python Project Template.
 
 ## Core Module
 
-::: aas_doors_lakehouse.core
+::: bedi_lakehouse.core
     options:
       show_source: true
       show_root_heading: true

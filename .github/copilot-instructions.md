@@ -1,12 +1,12 @@
 # Copilot Instructions
 
-Lakehouse pipelines for AAS Doors requirement extracts on Databricks.
+Multi-source lakehouse framework on Databricks. AAS Doors is the first source system onboarded.
 
 See [AGENTS.md](../AGENTS.md) for setup commands, project structure, and conventions.
 
 ## Key rules
 
-- **Plain Python modules, not Databricks notebooks.** New code goes in `src/aas_doors_lakehouse/` and is invoked from Asset Bundle wheel tasks.
+- **Plain Python modules, not Databricks notebooks.** New code goes in `src/bedi_lakehouse/` and is invoked from Asset Bundle wheel tasks.
 - **`databricks_v1/` is frozen.** It is the reconciliation baseline; editing it invalidates the comparison. Excluded from Ruff.
 - **Never commit data.** `input/` holds customer extracts and is git-ignored.
 - Ask before implementing. Research and present findings first.
